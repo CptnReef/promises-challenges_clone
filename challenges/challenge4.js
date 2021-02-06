@@ -7,22 +7,19 @@
  *    an API call and returns a Promise containing the result. Uncomment code
  *    block #1 and run the code. What happens? (HINT: You may need to run
  *    `npm init` first.)
- * 
- * 
+ *  ---OMIT---- 
  * 2. Sometimes, when making API calls, we want to make a bunch of calls in
  *    parallel and don't care in what order they resolve. (In other words, they
  *    don't depend on each other.)
- * 
+ *  ---OMIT----
  *    Uncomment code block #2 and run the code. What happens? What advantages 
  *    does `Promise.all` give us when dealing with promises?
- * 
- * 
+ *  ---OMIT----
  * 3. Make another variable `planet1Promise` and assign to it the result of
  *    calling `makePromise` with the URL `https://swapi.co/api/planets/1`.
  *    Add it to the array passed to `Promise.all`, then print the name of the
  *    returned planet inside the `.then()` callback.
- * 
- * 
+ *  ---OMIT----
  *******************************************************************************
  */
 
@@ -65,13 +62,13 @@ person1Promise.then(function(personResult) {
 });
 
 /* Uncomment me! #2 */
-// Promise.all([person1Promise, person2Promise, person3Promise])
-//     .then(function(results) {
-//         for (let i = 0; i < 3; i++) {
-//             console.log(`Person ${i+1}'s name: ${results[i].name}`)
-//         }
-//     })
-//     .catch(function(err) {
-//         console.log('Got an error!')
-//         console.log(err)
-//     })
+Promise.all([person1Promise, person2Promise, person3Promise])
+    .then(function(results) {
+        for (let i = 0; i < 3; i++) {
+            console.log(`Person ${i+1}'s name: ${results[i].name}`)
+        }
+    })
+    .catch(function(err) {
+        console.log('Got an error!')
+        console.log(err)
+    })

@@ -7,16 +7,20 @@
  *    an API call and returns a Promise containing the result. Uncomment code
  *    block #1 and run the code. What happens? (HINT: You may need to run
  *    `npm init` first.)
- *  ---OMIT---- 
+ *    Resulting person's name: Luke Skywalker
+ *  
  * 2. Sometimes, when making API calls, we want to make a bunch of calls in
  *    parallel and don't care in what order they resolve. (In other words, they
  *    don't depend on each other.)
- *  ---OMIT----
+ *    
  *    Uncomment code block #2 and run the code. What happens? What advantages 
  *    does `Promise.all` give us when dealing with promises?
- *  ---OMIT----
+ *    Person 1's name: Luke Skywalker
+ *    Person 2's name: C-3PO
+ *    Person 3's name: R2-D2
+ * 
  * 3. Make another variable `planet1Promise` and assign to it the result of
- *    calling `makePromise` with the URL `https://swapi.co/api/planets/1`.
+ *    calling `makePromise` with the URL `https://swapi.dev/api/planets/1`.
  *    Add it to the array passed to `Promise.all`, then print the name of the
  *    returned planet inside the `.then()` callback.
  *  ---OMIT----
@@ -49,9 +53,11 @@ function makePromise(url) {
     });
 }
 
-const person1Promise = makePromise('https://swapi.co/api/people/1')
-const person2Promise = makePromise('https://swapi.co/api/people/2')
-const person3Promise = makePromise('https://swapi.co/api/people/3')
+const person1Promise = makePromise('https://swapi.dev/api/people/1')
+const person2Promise = makePromise('https://swapi.dev/api/people/2')
+const person3Promise = makePromise('https://swapi.dev/api/people/3')
+
+const planet1Promise = makePromise('https://swapi.dev/api/planets/1')
 
 /* Uncomment me! #1 */
 person1Promise.then(function(personResult) {
@@ -62,10 +68,10 @@ person1Promise.then(function(personResult) {
 });
 
 /* Uncomment me! #2 */
-Promise.all([person1Promise, person2Promise, person3Promise])
+Promise.all([person1Promise, person2Promise, person3Promise, planet1Promise])
     .then(function(results) {
         for (let i = 0; i < 3; i++) {
-            console.log(`Person ${i+1}'s name: ${results[i].name}`)
+            console.log(`Person ${i+1}'s name: ${results[i].name}   homeworld: ${results[i].homeworld}`)
         }
     })
     .catch(function(err) {
